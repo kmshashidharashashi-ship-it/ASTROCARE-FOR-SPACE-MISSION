@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  astrocare-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: astrocare-3d-app
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - DATABASE_URL=sqlite:///./astracare_dev.db
+      - SECRET_KEY=astrocare-super-secret-key-space-apps-2026
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:8000,http://127.0.0.1:8000
+    volumes:
+      - astrocare_data:/app/backend
+    restart: unless-stopped
+
+volumes:
+  astrocare_data:

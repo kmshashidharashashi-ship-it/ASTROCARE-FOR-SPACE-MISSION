@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: #050B16;
+  color: #F1F5F9;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Futuristic Aerospace Glow & Glassmorphism */
+.glass-panel {
+  background: rgba(14, 26, 51, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(50, 230, 224, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(39, 139, 255, 0.05);
+}
+
+.glass-panel-glow {
+  background: rgba(14, 26, 51, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(50, 230, 224, 0.45);
+  box-shadow: 0 0 24px rgba(50, 230, 224, 0.2), inset 0 0 16px rgba(50, 230, 224, 0.1);
+}
+
+.glass-panel-emergency {
+  background: rgba(40, 10, 20, 0.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 82, 107, 0.6);
+  box-shadow: 0 0 30px rgba(255, 82, 107, 0.35), inset 0 0 20px rgba(255, 82, 107, 0.15);
+}
+
+/* Custom aerospace scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050B16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1B315B;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #32E6E0;
+}
+
+/* Animated Starfield Background */
+.stars-bg {
+  background: radial-gradient(ellipse at bottom, #0F1D38 0%, #050B16 100%);
+  background-attachment: fixed;
+}
+
+/* Hologram scanlines */
+.scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
