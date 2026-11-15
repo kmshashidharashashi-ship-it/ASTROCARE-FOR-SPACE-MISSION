@@ -35,13 +35,18 @@ class WebSocketClient {
       return;
     }
 
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.host;
+    const defaultProto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const defaultHost = window.location.host;
+    const wsBase = import.meta.env.VITE_WS_URL
+      ? import.meta.env.VITE_WS_URL.replace(/\/$/, '')
+      : import.meta.env.VITE_API_BASE_URL
+      ? import.meta.env.VITE_API_BASE_URL.replace(/^http/, 'ws').replace(/\/$/, '')
+      : `${defaultProto}//${defaultHost}`;
 
     // ── Connect Telemetry Socket ─────────────────────────────────────────────
     if (!isTelemetryActive) {
       try {
-        this.telemetryWs = new WebSocket(`${protocol}//${host}/ws/telemetry`);
+        this.telemetryWs = new WebSocket(`${wsBase}/ws/telemetry`);
 
         this.telemetryWs.onopen = () => {
           this.retryCount = 0;
@@ -85,7 +90,7 @@ class WebSocketClient {
     // ── Connect Alerts Socket ────────────────────────────────────────────────
     if (!isAlertsActive) {
       try {
-        this.alertsWs = new WebSocket(`${protocol}//${host}/ws/alerts`);
+        this.alertsWs = new WebSocket(`${wsBase}/ws/alerts`);
 
         this.alertsWs.onopen = () => {
           this.isConnected = true;
